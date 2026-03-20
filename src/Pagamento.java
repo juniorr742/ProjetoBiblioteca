@@ -12,9 +12,9 @@ public class Pagamento {
     }
 
 
-    public void quitarDivida (double saldoDevedor){
-        if (saldoDevedor > 0){
-            System.out.println("Saldo de: %f. Pagamento realizado com sucesso!");
+    public void quitarDivida (){
+        if (this.saldoDevedor > 0){
+            System.out.printf("Saldo de: %.2f. Pagamento realizado com sucesso!", saldoDevedor);
             this.saldoDevedor = 0;
         }else {
             System.out.println("Você não tem débitos!");
@@ -25,7 +25,7 @@ public class Pagamento {
         if (saldoDevedor == 0){
             System.out.println("Você não tem débitos");
         }else{
-            System.out.printf("Seu débito é de %2.f", saldoDevedor);
+            System.out.printf("Seu débito é de %.2f", saldoDevedor);
         }
 
     }
