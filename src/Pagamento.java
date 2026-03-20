@@ -29,7 +29,11 @@ public class Pagamento {
         }
 
     }
+
+    public double getSaldoDevedor() {
+        return saldoDevedor;
     }
+}
 
 
     

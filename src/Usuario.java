@@ -21,8 +21,12 @@ public class Usuario {
 
     public void pegarLivro(Livro livro){
 
+       if (this.saldo.getSaldoDevedor() >= 45){
+           System.out.println("Saldo devedor atingiu o limite, por favor realize o pagameto");
+       }else{
         livroEmprestado.add(livro);
         saldo.registrarEmprestimo();
+       }
     }
 
     public void devolverLivro (Livro livro){
