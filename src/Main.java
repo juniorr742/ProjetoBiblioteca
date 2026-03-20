@@ -17,6 +17,7 @@
         minhaBiblioteca.devolverLivro("Dom Casmurro");
 
         System.out.println("Disponivel: " + livro1.isDisponivel());
+        System.out.println("testando");
 
      }
 }
