@@ -1,24 +1,20 @@
  class Main {
 
     public static void main(String[] args ) {
+
+
+        Usuario Alun1 = new Aluno("João", 1);
+        Usuario prof1 = new Professor("Carlos Miguel", 9);
+
         Livro livro1 = new Livro("Dom Casmurro", "Machado de assis");
-        System.out.println(livro1.getTitulo());
 
-        Usuario Usuario1 = new Usuario("João", 1);
-        Biblioteca minhaBiblioteca = new Biblioteca();
+        System.out.println("Testando aluno = ");
+        Alun1.pegarLivro(livro1);
+        System.out.println("Livros do aluno: " + Alun1.getlivroEmprestado().size());
 
-        minhaBiblioteca.adicionarLivro(livro1);
-        minhaBiblioteca.adicionarUsuario(Usuario1);
-
-        minhaBiblioteca.emprestarLivro("Dom Casmurro", 1);
-
-        System.out.println("Disponível: " + livro1.isDisponivel());
-
-        minhaBiblioteca.devolverLivro("Dom Casmurro");
-
-        System.out.println("Disponivel: " + livro1.isDisponivel());
-        System.out.println("testando");
-
-     }
+        System.out.println("Testando Professor = ");
+        prof1.pegarLivro(livro1);
+        System.out.println("Livros do Professor: " + prof1.getlivroEmprestado().size());
+    }
 }
 

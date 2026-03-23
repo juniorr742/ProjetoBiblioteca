@@ -3,7 +3,7 @@ import java.util.List;
 
 
 
-public class Usuario {
+public abstract class Usuario {
     private String nome;
     private int id;
     private List<Livro> livroEmprestado;
@@ -21,7 +21,7 @@ public class Usuario {
 
     public void pegarLivro(Livro livro){
 
-       if (this.saldo.getSaldoDevedor() >= 45){
+       if (this.saldo.getSaldoDevedor() >= getLimiteSaldo() || livroEmprestado.size() >= getLimiteLivros()){
            System.out.println("Saldo devedor atingiu o limite, por favor realize o pagameto");
        }else{
         livroEmprestado.add(livro);
@@ -36,4 +36,8 @@ public class Usuario {
     public Pagamento getSaldo() {
         return saldo;
     }
+
+    public abstract double getLimiteSaldo();
+    public abstract int getLimiteLivros();
+
 }
