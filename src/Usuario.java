@@ -29,8 +29,28 @@ public abstract class Usuario {
        }
     }
 
-    public void devolverLivro (Livro livro){
-        livroEmprestado.remove(livro);
+    public void devolverLivro (Livro livro, int diasCorridos){
+
+        if (livroEmprestado.contains(livro)){
+            int prazo = 7;
+
+            if (diasCorridos > prazo){
+                int diasAtraso = diasCorridos - prazo;
+                double valorMulta = diasAtraso * 2;
+                this.saldo.registrarMulta(valorMulta);
+
+                System.out.println("Livro devolvido com atraso de "+diasAtraso + " dias.");
+                System.out.println("Multa de " + valorMulta + " R$ aplicada");
+            } else {
+                System.out.println("livro devolvido no prazo.");
+            }
+                livroEmprestado.remove(livro);
+
+        }else {
+            System.out.println("Livro não encontrado com esse usuário");
+        }
+
+
     }
 
     public Pagamento getSaldo() {

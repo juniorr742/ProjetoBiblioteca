@@ -21,6 +21,13 @@ public class Pagamento {
         }
     }
 
+    public void registrarMulta(double valor){
+        if (valor > 0){
+            this.saldoDevedor += valor;
+            System.out.println("Registro foi um sucesso!");
+        }
+    }
+
     public void verificarStatus(){
         if (saldoDevedor == 0){
             System.out.println("Você não tem débitos");
