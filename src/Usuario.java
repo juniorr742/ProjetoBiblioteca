@@ -19,6 +19,20 @@ public abstract class Usuario {
     public int getId(){return id;}
     public  List<Livro> getlivroEmprestado(){return livroEmprestado;}
 
+    public String meusDados(int id){
+        if (this.id == id){
+
+            for (Livro livro: livroEmprestado){
+                System.out.println(livro);
+            }
+
+        } else {
+            return "O id não está correto";
+        }
+        return "Nome: " + getNome() + " | id: " + getId() + " | saldo: " + getSaldo();
+    }
+
+
     public void pegarLivro(Livro livro){
 
        if (this.saldo.getSaldoDevedor() >= getLimiteSaldo() || livroEmprestado.size() >= getLimiteLivros()){
@@ -59,5 +73,18 @@ public abstract class Usuario {
 
     public abstract double getLimiteSaldo();
     public abstract int getLimiteLivros();
+
+    public void listarLista(){
+       if (livroEmprestado.isEmpty()){
+           System.out.println("Você não tem nenhum livro");
+       }else {
+           for (Livro livro: livroEmprestado){
+               System.out.println(livro);
+           }
+       }
+
+    }
+
+
 
 }

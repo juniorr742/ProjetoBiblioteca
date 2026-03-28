@@ -14,4 +14,9 @@ public class Livro {
         public void setDisponivel(boolean disponivel) {this.disponivel = disponivel;}
         public boolean isDisponivel() {return disponivel;}
 
+    @Override
+    public String toString() {
+
+        return "Título: " + this.titulo + " (Autor: " + this.autor + ")";
+    }
 }

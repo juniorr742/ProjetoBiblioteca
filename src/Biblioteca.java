@@ -10,8 +10,13 @@ public class Biblioteca {
         this.usuarios = new ArrayList<>();
     }
 
-    public void adicionarUsuario(Usuario usuario){
-        usuarios.add(usuario);
+    public void adicionarUsuario(Usuario novoUsuario){
+        for (Usuario l: usuarios){
+            if (novoUsuario.getId() == l.getId()){
+                System.out.println("Esse Id ja existe, digite outro");
+            }
+        }
+
     }
 
 
