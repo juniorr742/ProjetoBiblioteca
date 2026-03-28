@@ -19,18 +19,9 @@ public abstract class Usuario {
     public int getId(){return id;}
     public  List<Livro> getlivroEmprestado(){return livroEmprestado;}
 
-    public String meusDados(int id){
-        if (this.id == id){
 
-            for (Livro livro: livroEmprestado){
-                System.out.println(livro);
-            }
+     //   return "Nome: " + getNome() + " | id: " + getId() + " | saldo: " + getSaldo();
 
-        } else {
-            return "O id não está correto";
-        }
-        return "Nome: " + getNome() + " | id: " + getId() + " | saldo: " + getSaldo();
-    }
 
 
     public void pegarLivro(Livro livro){
