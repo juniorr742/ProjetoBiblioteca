@@ -10,13 +10,29 @@ public class Biblioteca {
         this.usuarios = new ArrayList<>();
     }
 
-    public void adicionarUsuario(Usuario novoUsuario){
-        for (Usuario l: usuarios){
-            if (novoUsuario.getId() == l.getId()){
-                System.out.println("Esse Id ja existe, digite outro");
+    public Usuario buscarPorId(int IdProcurado){
+        for (Usuario u: usuarios){
+            if (u.getId() == IdProcurado){
+                return u;
             }
         }
+        return null;
+    }
 
+
+    public void adicionarUsuario(Usuario novoUsuario){
+        usuarios.add(novoUsuario);
+    }
+
+    public void listar(){
+
+       if (usuarios.isEmpty()){
+           System.out.println("Lista de usuários vazia!!!");
+       }else {
+           for (Usuario l: usuarios){
+                 System.out.println(l);
+           }
+       }
     }
 
 

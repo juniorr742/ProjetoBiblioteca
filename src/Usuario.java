@@ -14,13 +14,17 @@ public abstract class Usuario {
         this.id = id;
         this.livroEmprestado = new ArrayList<>();
         this.saldo = new Pagamento();
+
     }
     public String getNome(){return nome;}
     public int getId(){return id;}
     public  List<Livro> getlivroEmprestado(){return livroEmprestado;}
 
 
-     //   return "Nome: " + getNome() + " | id: " + getId() + " | saldo: " + getSaldo();
+    @Override
+    public String toString() {
+        return "Nome: " + this.nome + " | ID: " + this.id + " | Saldo: " + this.saldo;
+    }
 
 
 

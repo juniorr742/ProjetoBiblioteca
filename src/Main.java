@@ -5,8 +5,8 @@ class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean continuarRodar = true;
-        Usuario alun1 = new Aluno("Lucas", 1);
-        Livro livro1 = new Livro("DOTA Pro", "Chicão pro");
+        Biblioteca minhaBiblioteca = new Biblioteca();
+        menuGeral menu = new menuGeral(minhaBiblioteca);
 
 
         do {
@@ -17,7 +17,6 @@ class Main {
             System.out.println("[3] - Pagamentos e saldos");
             System.out.println("[4] - Sair");
             int opcaoUsuario = sc.nextInt();
-            menuGeral menu = new menuGeral();
 
             switch (opcaoUsuario) {
                 case 1: sc.nextLine();
