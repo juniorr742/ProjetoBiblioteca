@@ -24,7 +24,7 @@ public class Biblioteca {
         usuarios.add(novoUsuario);
     }
 
-    public void listar(){
+    public void listarUsuarios(){
 
        if (usuarios.isEmpty()){
            System.out.println("Lista de usuários vazia!!!");
@@ -34,6 +34,32 @@ public class Biblioteca {
            }
        }
     }
+
+    public void listarLivros(){
+
+        if (acervo.isEmpty()){
+            System.out.println("Lista de Livros vazia!!!");
+        }else {
+            for (Livro l: acervo){
+                System.out.println(l);
+            }
+        }
+    }
+
+    public String procurarLivro(String livroProcurar){
+        if (acervo.isEmpty()) {
+            return "Lista de livros esta vazia";
+        }
+
+            for (Livro l : acervo) {
+             if (livroProcurar != null && livroProcurar.equalsIgnoreCase(l.getTitulo())) {
+                System.out.println("Esse livro está cadastrado!");
+                return l.getTitulo();
+            }
+        }
+            return "Livro não cadastrado, por favor, realize o cadastro primeiro.";
+    }
+
 
 
     public void adicionarLivro(Livro livro){

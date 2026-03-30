@@ -40,7 +40,17 @@ public class Pagamento {
     public double getSaldoDevedor() {
         return saldoDevedor;
     }
+
+    @Override
+    public String toString() {
+        return "R$ " + this.saldoDevedor;
+    }
 }
+
+
+
+
+
 
 
     

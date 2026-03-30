@@ -22,8 +22,9 @@ class Main {
                 case 1: sc.nextLine();
                     menu.menuUsuario();
                     break;
-                case 2:
-
+                case 2: sc.nextLine();
+                    menu.menuLivro();
+                    break;
             }
         } while (continuarRodar);
     }

@@ -23,7 +23,7 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return "Nome: " + this.nome + " | ID: " + this.id + " | Saldo: " + this.saldo;
+        return "Nome: " + this.nome + " | ID: " + this.id + " | Saldo: R$ " + this.saldo;
     }
 
 
