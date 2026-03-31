@@ -16,6 +16,7 @@ class Main {
             System.out.println("[2] - Livros");
             System.out.println("[3] - Pagamentos e saldos");
             System.out.println("[4] - Sair");
+
             int opcaoUsuario = sc.nextInt();
 
             switch (opcaoUsuario) {

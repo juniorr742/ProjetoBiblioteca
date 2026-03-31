@@ -4,6 +4,7 @@ import java.util.List;
 public class Biblioteca {
     private List<Livro> acervo;
     private List<Usuario> usuarios;
+    private Pagamento saldo = new Pagamento();
 
     public Biblioteca(){
         this.acervo = new ArrayList<>();
@@ -16,7 +17,12 @@ public class Biblioteca {
                 return u;
             }
         }
-        return null;
+        try {
+            return null;
+        } catch (Exception e){
+            return null;
+        }
+
     }
 
 
@@ -66,21 +72,28 @@ public class Biblioteca {
         acervo.add(livro);
     }
 
-   public void devolverLivro(String titulo){
-        Livro livroEncontrado = null;
-        for (Livro l : acervo){
-            if (l.getTitulo().equalsIgnoreCase(titulo)){
-                livroEncontrado = l;
-                break;
-            }
-        }
+   public void devolverLivro(String titulo, int idUsuario) {
+       Livro livroEncontrado = null;
+       for (Livro l : acervo) {
+           if (l.getTitulo().equalsIgnoreCase(titulo)) {
+               livroEncontrado = l;
+           }
+       }
 
-        if (livroEncontrado != null){
-            livroEncontrado.setDisponivel(true);
-            System.out.println("Livro devolvido!");
-        } else {
-            System.out.println("Livro não encontrado!");
-        }
+       Usuario usuarioEncontrado = null;
+       for (Usuario u : usuarios) {
+           if (u.getId() == idUsuario) {
+               usuarioEncontrado = u;
+           }
+
+           if (livroEncontrado != null && usuarioEncontrado != null) {
+               livroEncontrado.setDisponivel(true);
+               usuarioEncontrado.getlivroEmprestado().remove(livroEncontrado);
+               System.out.println("Livro devolvido!");
+           } else {
+               System.out.println("Livro não encontrado!");
+           }
+       }
    }
 
 
@@ -99,14 +112,20 @@ public class Biblioteca {
         for (Usuario u : usuarios){
             if (u.getId() == idUsuario) {
                 usuarioEncontrado = u;
+
                 break;
             }
         }
 
         if (livroEncontrado != null && usuarioEncontrado != null){
+            if (usuarioEncontrado.getSaldo().saldoDevedor < usuarioEncontrado.getLimiteSaldo()){
+
             livroEncontrado.setDisponivel(false);
             usuarioEncontrado.getlivroEmprestado().add(livroEncontrado);
-            System.out.println("Empréstimo realizado!");
+            usuarioEncontrado.getSaldo().registrarEmprestimo();
+            } else {
+                System.out.println("limite atingido!");
+            }
         } else {
             System.out.println("Livro indisponivel ou usuário não encontrado");
         }
