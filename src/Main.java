@@ -26,6 +26,12 @@ class Main {
                 case 2: sc.nextLine();
                     menu.menuLivro();
                     break;
+                case 3:
+                    menu.menuPagamento();
+                    break;
+                case 4:
+                    continuarRodar = false;
+                    break;
             }
         } while (continuarRodar);
     }

@@ -27,19 +27,26 @@ public class menuGeral {
                     System.out.println("Você é aluno ou professor?");
                     sc.nextLine();
                     String subUsuario = sc.nextLine();
+
                     if (subUsuario.equalsIgnoreCase("aluno")) {
-                        System.out.println("Digite seu nome e seu id: ");
+                        System.out.println("Digite seu nome: ");
                         String nomeAluno = sc.nextLine();
+                        System.out.println("Digite sua id: ");
                         int idNova = sc.nextInt();
+
                         Usuario alunoNovo = new Aluno(nomeAluno, idNova);
                         info.adicionarUsuario(alunoNovo);
+
                         System.out.println("Aluno cadastrado com sucesso");
                     } else {
-                        System.out.println("Digite seu nome e seu id: ");
+                        System.out.println("Digite seu nome: ");
                         String nomeProfessor = sc.nextLine();
+                        System.out.println("Digite sua id: ");
                         int idNova = sc.nextInt();
+
                         Usuario professorNovo = new Professor(nomeProfessor, idNova);
                         info.adicionarUsuario(professorNovo);
+
                         System.out.println("Professor cadastrado com sucesso");
                     }
                     break;
@@ -50,10 +57,9 @@ public class menuGeral {
                     Usuario usuarioLogado = info.buscarPorId(idProcura);
 
                     if (usuarioLogado != null) {
-                        System.out.println("Saldo: " + usuarioLogado.getSaldo());
                         System.out.println("Nome: " + usuarioLogado.getNome());
                         System.out.println("Livros em sua posse: " + usuarioLogado.getlivroEmprestado());
-                        System.out.println("Limites de livros: " + usuarioLogado.getLimiteSaldo());
+                        System.out.println("Limite de gasto: R$ " + usuarioLogado.getLimiteSaldo());
                     } else {
                         System.out.println("Erro: Usuário inexistente!");
                     }
@@ -121,6 +127,35 @@ public class menuGeral {
                     continuarMenu = false;
             }
         } while (continuarMenu);
+
+    }
+    public void menuPagamento(){
+        boolean continuarPagamento = true;
+        do {
+            System.out.println("Digite a opção desejada");
+            System.out.println("[1] - Verificar saldo");
+            System.out.println("[2] - Realizar pagamento");
+            System.out.println("[3] - Verificar custos");
+            System.out.println("[4] - sair");
+            int id;
+
+            int opcaoPagamento = sc.nextInt();
+
+
+            switch (opcaoPagamento){
+                case 1:
+                    System.out.println("Digite seu id: ");
+                    id = sc.nextInt();
+                    info.verificarSaldo(id);
+                    break;
+                case 2:
+                    System.out.println("Digite seu id: ");
+                    id = sc.nextInt();
+                    info.realizarPagamento(id);
+                    break;
+                case 3:
+            }
+        }while (continuarPagamento);
     }
 }
 
