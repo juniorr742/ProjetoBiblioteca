@@ -1,10 +1,7 @@
 public class Pagamento {
     double saldoDevedor;
-    int custoFixo = 15;
+    private static final double custoFixo = 15;
 
-    public void pagamento(){
-        this.saldoDevedor = 0;
-    }
 
     public void registrarEmprestimo(){
         this.saldoDevedor += custoFixo;
@@ -14,7 +11,7 @@ public class Pagamento {
 
     public void quitarDivida (){
         if (this.saldoDevedor > 0){
-            System.out.printf("Saldo de: %.2f. Pagamento realizado com sucesso!", saldoDevedor);
+            System.out.printf("Saldo de: %.2f. Pagamento realizado com sucesso!\n", saldoDevedor);
             this.saldoDevedor = 0;
         }else {
             System.out.println("Você não tem débitos!");

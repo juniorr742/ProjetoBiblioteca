@@ -40,7 +40,10 @@ public abstract class Usuario {
 
     public void devolverLivro (Livro livro, int diasCorridos){
 
-        if (livroEmprestado.contains(livro)){
+        boolean possuiOLivro = livroEmprestado.stream()
+                .anyMatch(l -> l.getTitulo().equalsIgnoreCase(livro.getTitulo()));
+
+        if (possuiOLivro){
             int prazo = 7;
 
             if (diasCorridos > prazo){
@@ -53,7 +56,8 @@ public abstract class Usuario {
             } else {
                 System.out.println("livro devolvido no prazo.");
             }
-                livroEmprestado.remove(livro);
+            livroEmprestado.removeIf(l -> l.getTitulo().equalsIgnoreCase(livro.getTitulo()));
+
 
         }else {
             System.out.println("Livro não encontrado com esse usuário");
