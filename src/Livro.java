@@ -1,13 +1,20 @@
+import java.util.Objects;
+
 public class Livro {
+
     private String titulo;
     private String autor;
     private boolean disponivel;
     private int prazo = 7;
 
         public Livro(String titulo, String autor) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.disponivel = true;
+            if (titulo == null || titulo.trim().isEmpty()){
+                this.titulo = "Título indefinido";
+            }else {
+                this.titulo = titulo;
+            }
+            this.autor = autor;
+            this.disponivel = true;
          }
 
         public String getTitulo(){return titulo; }
@@ -20,4 +27,15 @@ public class Livro {
         return "Título: " + this.titulo + " (Autor: " + this.autor + ")";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Livro livro = (Livro) o;
+        return Objects.equals(titulo, livro.titulo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(titulo);
+    }
 }
