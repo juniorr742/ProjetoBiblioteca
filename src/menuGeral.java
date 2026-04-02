@@ -154,6 +154,12 @@ public class menuGeral {
                     info.realizarPagamento(id);
                     break;
                 case 3:
+                    Pagamento custoFixo = new Pagamento();
+                    System.out.println("O custo de cada empréstimo é de: " +  custoFixo.getCustoFixo());
+                    System.out.println("Para verificar seu saldo, solicite a opção 1 do menu pagamentos.");
+                    break;
+                case 4:
+                    continuarPagamento = false;
             }
         }while (continuarPagamento);
     }

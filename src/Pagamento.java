@@ -38,6 +38,10 @@ public class Pagamento {
         return saldoDevedor;
     }
 
+    public double getCustoFixo(){
+        return custoFixo;
+    }
+
     @Override
     public String toString() {
         return "R$ " + this.saldoDevedor;

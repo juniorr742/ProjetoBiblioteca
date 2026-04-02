@@ -4,7 +4,7 @@ import java.util.List;
 public class Biblioteca {
     private List<Livro> acervo;
     private List<Usuario> usuarios;
-    private Pagamento saldo = new Pagamento();
+
 
     public Biblioteca(){
         this.acervo = new ArrayList<>();
@@ -20,7 +20,7 @@ public class Biblioteca {
         try {
             return null;
         } catch (Exception e){
-            return null;
+            return null; // vou verificar melhor forma de fazer esse try.
         }
 
     }
@@ -128,6 +128,26 @@ public class Biblioteca {
             }
         } else {
             System.out.println("Livro indisponivel ou usuário não encontrado");
+        }
+    }
+
+    public void verificarSaldo(int idPagamento){
+        Usuario usuarioEcontrado = null;
+        for (Usuario u: usuarios){
+            if (u.getId() == idPagamento){
+                System.out.println("Seu saldo devedor é: " + u.getSaldo().getSaldoDevedor());
+            } else {
+                System.out.println("Id não identificado");
+            }
+        }
+    }
+
+    public void realizarPagamento(int id){
+        Usuario usuarioEcontrado;
+        for (Usuario u: usuarios){
+            if (u.getId() == id){
+                u.getSaldo().quitarDivida();
+            }
         }
     }
 
