@@ -1,30 +1,43 @@
 import java.util.Objects;
 
 public class Livro {
-
+    private static int contadorId = 1;
     private String titulo;
     private String autor;
     private boolean disponivel;
     private int prazo = 7;
+    int id;
 
         public Livro(String titulo, String autor) {
-            if (titulo == null || titulo.trim().isEmpty()){
+            if (titulo == null || titulo.isBlank()){
                 this.titulo = "Título indefinido";
             }else {
                 this.titulo = titulo;
             }
             this.autor = autor;
             this.disponivel = true;
+            this.id = contadorId;
+            contadorId++;
+
          }
 
-        public String getTitulo(){return titulo; }
-        public void setDisponivel(boolean disponivel) {this.disponivel = disponivel;}
-        public boolean isDisponivel() {return disponivel;}
+
+
+    public String getTitulo() {
+            return titulo; }
+    public void setDisponivel(boolean disponivel) {
+            this.disponivel = disponivel;}
+    public boolean isDisponivel() {
+            return disponivel;}
+    public int getId(){
+            return id;
+    }
+
 
     @Override
     public String toString() {
 
-        return "Título: " + this.titulo + " (Autor: " + this.autor + ")";
+        return  "Id: " + getId() + "Título: " + this.titulo + " (Autor: " + this.autor + ")";
     }
 
     @Override

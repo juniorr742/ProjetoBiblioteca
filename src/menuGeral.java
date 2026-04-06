@@ -31,20 +31,16 @@ public class menuGeral {
                     if (subUsuario.equalsIgnoreCase("aluno")) {
                         System.out.println("Digite seu nome: ");
                         String nomeAluno = sc.nextLine();
-                        System.out.println("Digite sua id: ");
-                        int idNova = sc.nextInt();
 
-                        Usuario alunoNovo = new Aluno(nomeAluno, idNova);
+                        Usuario alunoNovo = new Aluno(nomeAluno);
                         info.adicionarUsuario(alunoNovo);
 
                         System.out.println("Aluno cadastrado com sucesso");
                     } else {
                         System.out.println("Digite seu nome: ");
                         String nomeProfessor = sc.nextLine();
-                        System.out.println("Digite sua id: ");
-                        int idNova = sc.nextInt();
 
-                        Usuario professorNovo = new Professor(nomeProfessor, idNova);
+                        Usuario professorNovo = new Professor(nomeProfessor);
                         info.adicionarUsuario(professorNovo);
 
                         System.out.println("Professor cadastrado com sucesso");
@@ -54,7 +50,7 @@ public class menuGeral {
                     System.out.println("Digite sua Id: ");
                     int idProcura = sc.nextInt();
 
-                    Usuario usuarioLogado = info.buscarPorId(idProcura);
+                    Usuario usuarioLogado = info.buscarUsuariosPorId(idProcura);
 
                     if (usuarioLogado != null) {
                         System.out.println("Nome: " + usuarioLogado.getNome());
@@ -81,8 +77,8 @@ public class menuGeral {
             System.out.println("[1] - Cadastrar livro");
             System.out.println("[2] - Listar livros cadastrados");
             System.out.println("[3] - Verificar livro específico");
-            System.out.println("[4] - Devolver livro");
-            System.out.println("[5] - Pegar livro emprestado");
+            System.out.println("[4] - Pegar livro emprestado");
+            System.out.println("[5] - Devolver livro");
             System.out.println("[6] - Sair");
             int opcaoMenu = sc.nextInt();
 
@@ -103,25 +99,35 @@ public class menuGeral {
                 case 3:
                     System.out.println("Digite o nome do livro que gostaria de verificar: ");
                     String livro = sc.nextLine();
-                    info.procurarLivro(livro);
+                    info.procurarLivroPorTitulo(livro);
+                    if(livro != null){
+                        System.out.println("Livro encontrado: " + livro);
+                    }else {
+                        System.out.println("O livro não se encontra nessa biblioteca.");
+                    }
                     break;
                 case 4: sc.nextLine();
-                    System.out.println("Digite sua id: ");
+                    System.out.println("Digite o livro que deseja pegar emprestado? ");
+                    String tituloEmprestimo = sc.nextLine();
+                    tituloEmprestimo = info.procurarLivroPorTitulo(tituloEmprestimo);
+                    System.out.println("Digite a id do livro: ");
+                    int idLivro = sc.nextInt();
+                    System.out.println("Digite a id usuário: ");
                     int idUsuario = sc.nextInt();
+                    info.emprestarLivro(idLivro, idUsuario);
+                    break;
+                case 5:sc.nextLine();
+                    System.out.println("Digite sua id: ");
+                    int idUsuarioDevolucao = sc.nextInt();
 
                     sc.nextLine();
 
                     System.out.println("Digite o livro que quer devolver");
                     String tituloDevolucao = sc.nextLine();
-
-                    info.devolverLivro(tituloDevolucao, idUsuario);
-                    break;
-                case 5: sc.nextLine();
-                    System.out.println("Digite o livro que deseja pegar emprestado? ");
-                    String tituloEmprestimo = sc.nextLine();
-                    System.out.println("Digite sua id: ");
-                    int idEmprestimo = sc.nextInt();
-                    info.emprestarLivro(tituloEmprestimo, idEmprestimo);
+                    tituloDevolucao = info.procurarLivroPorTitulo(tituloDevolucao);
+                    System.out.println("Digite o Id do livro: ");
+                    int idDevolucao = sc.nextInt();
+                    info.devolverLivro(idDevolucao, idUsuarioDevolucao);
                     break;
                 case 6:
                     continuarMenu = false;
