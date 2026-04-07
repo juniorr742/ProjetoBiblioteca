@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 public class RegistroEmprestimo {
     private static int contadorId = 1;
-    int idTransacao;
+    private int idTransacao;
     private int idUsuario;
     private int idLivro;
     private LocalDate dataEmprestimo;
@@ -15,6 +15,22 @@ public class RegistroEmprestimo {
         this.idLivro = idLivro;
         this.dataEmprestimo = LocalDate.now();
         this.finalizado = false;
+    }
+
+    public int getIdTransacao() {
+        return idTransacao;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public int getIdLivro() {
+        return idLivro;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
     }
 
     public void finalizarEmprestimo(){

@@ -63,8 +63,10 @@ public abstract class Usuario {
 
                 System.out.println("Livro devolvido com atraso de " + diasAtraso + " dias.");
                 System.out.println("Multa de " + valorMulta + " R$ aplicada");
+                livroEmprestado.remove(livro);
             } else {
                 System.out.println("livro devolvido no prazo.");
+                livroEmprestado.remove(livro);
             }
             livroEmprestado.removeIf(l -> l.getId() == livro.getId());
 

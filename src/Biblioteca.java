@@ -4,11 +4,13 @@ import java.util.List;
 public class Biblioteca {
     private List<Livro> acervo;
     private List<Usuario> usuarios;
+    private List<RegistroEmprestimo> historicoEmprestimos;
 
 
     public Biblioteca(){
         this.acervo = new ArrayList<>();
         this.usuarios = new ArrayList<>();
+        this.historicoEmprestimos = new ArrayList<>();
     }
 
     public Usuario buscarUsuariosPorId(int IdProcurado){
@@ -73,12 +75,19 @@ public class Biblioteca {
         acervo.add(livro);
     }
 
-   public void devolverLivro(int idLivro, int idUsuario) {
+   public void devolverLivro(int idLivro, int idUsuario, int diasCorridos) {
        Livro livroEncontrado = bucarLivroPorId(idLivro);
        Usuario usuarioEncontrado = buscarUsuariosPorId(idUsuario);
            if (livroEncontrado != null && usuarioEncontrado != null) {
+               usuarioEncontrado.devolverLivro(livroEncontrado, diasCorridos);
                livroEncontrado.setDisponivel(true);
-               usuarioEncontrado.getlivroEmprestado().remove(livroEncontrado);
+               for(RegistroEmprestimo re: historicoEmprestimos){
+                   if (re.getIdLivro() == idLivro && re.getIdUsuario() == idUsuario && !re.isFinalizado()){
+                       re.finalizarEmprestimo();
+                       System.out.println("Transação de histórico " + re.getIdTransacao() + " encerrada.");
+                       break;
+                   }
+               }
                System.out.println("Livro devolvido!");
            } else {
                System.out.println("Livro não encontrado");
@@ -98,6 +107,9 @@ public class Biblioteca {
                 livroEncontrado.setDisponivel(false);
                 usuarioEncontrado.getlivroEmprestado().add(livroEncontrado);
                 usuarioEncontrado.getSaldo().registrarEmprestimo();
+                RegistroEmprestimo novoRegistro = new RegistroEmprestimo(idUsuario,idLivro);
+                historicoEmprestimos.add(novoRegistro);
+                System.out.println("Registro de transação gerado com sucesso: ID " + novoRegistro.getIdTransacao());
             }
         }else {
             System.out.println("Livro ou usuário não encontrado!");
