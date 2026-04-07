@@ -33,10 +33,15 @@ public class RegistroEmprestimo {
         return finalizado;
     }
 
+    public LocalDate getDataEmprestimo() {
+        return dataEmprestimo;
+    }
+
     public void finalizarEmprestimo(){
         this.dataDevolucao = LocalDate.now();
         this.finalizado = true;
     }
+
 
     @Override
     public String toString(){

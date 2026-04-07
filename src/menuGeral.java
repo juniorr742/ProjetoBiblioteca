@@ -35,7 +35,7 @@ public class menuGeral {
                         Usuario alunoNovo = new Aluno(nomeAluno);
                         info.adicionarUsuario(alunoNovo);
 
-                        System.out.println("Aluno cadastrado com sucesso");
+                        System.out.println("Aluno cadastrado com sucesso, seu novo id é: " + alunoNovo.getId());
                     } else {
                         System.out.println("Digite seu nome: ");
                         String nomeProfessor = sc.nextLine();
@@ -43,7 +43,7 @@ public class menuGeral {
                         Usuario professorNovo = new Professor(nomeProfessor);
                         info.adicionarUsuario(professorNovo);
 
-                        System.out.println("Professor cadastrado com sucesso");
+                        System.out.println("Professor cadastrado com sucesso, seu novo id é: " + professorNovo.getId());
                     }
                     break;
                 case 2:

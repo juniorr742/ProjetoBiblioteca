@@ -1,5 +1,7 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 public class Biblioteca {
     private List<Livro> acervo;
@@ -75,19 +77,22 @@ public class Biblioteca {
         acervo.add(livro);
     }
 
-   public void devolverLivro(int idLivro, int idUsuario, int diasCorridos) {
+   public void devolverLivro(int idLivro, int idUsuario) {
        Livro livroEncontrado = bucarLivroPorId(idLivro);
        Usuario usuarioEncontrado = buscarUsuariosPorId(idUsuario);
            if (livroEncontrado != null && usuarioEncontrado != null) {
-               usuarioEncontrado.devolverLivro(livroEncontrado, diasCorridos);
-               livroEncontrado.setDisponivel(true);
+               long diasCorridos = 0;
+
                for(RegistroEmprestimo re: historicoEmprestimos){
                    if (re.getIdLivro() == idLivro && re.getIdUsuario() == idUsuario && !re.isFinalizado()){
+                       diasCorridos = ChronoUnit.DAYS.between(re.getDataEmprestimo(), LocalDate.now());
                        re.finalizarEmprestimo();
                        System.out.println("Transação de histórico " + re.getIdTransacao() + " encerrada.");
                        break;
                    }
                }
+               usuarioEncontrado.devolverLivro(livroEncontrado, (int) diasCorridos);
+               livroEncontrado.setDisponivel(true);
                System.out.println("Livro devolvido!");
            } else {
                System.out.println("Livro não encontrado");
