@@ -1,11 +1,29 @@
+import java.time.LocalDateTime;
+
 public class Pagamento {
     double saldoDevedor;
     private static final double custoFixo = 15;
+    private static int contadorPagamento = 1;
+    private int id;
+    private LocalDateTime dataUltimaOperacao;
+
+
+    public Pagamento(){
+        this.id = contadorPagamento;
+        contadorPagamento++;
+        this.saldoDevedor = 0;
+        this.dataUltimaOperacao = LocalDateTime.now();
+    }
+
+    public int getId(){
+        return id;
+    }
 
 
     public void registrarEmprestimo(){
         this.saldoDevedor += custoFixo;
-        System.out.println("Empréstimo realizado com sucesso!");
+        this.dataUltimaOperacao = LocalDateTime.now();
+        System.out.println("Empréstimo realizado com sucesso! (ID Pagamento: " + id +")");
     }
 
 
@@ -13,6 +31,7 @@ public class Pagamento {
         if (this.saldoDevedor > 0){
             System.out.printf("Saldo de: %.2f. Pagamento realizado com sucesso!\n", saldoDevedor);
             this.saldoDevedor = 0;
+            this.dataUltimaOperacao = LocalDateTime.now();
         }else {
             System.out.println("Você não tem débitos!");
         }

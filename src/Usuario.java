@@ -34,18 +34,24 @@ public abstract class Usuario {
 
     public void pegarLivro(Livro livro){
 
+       boolean jaPossuiEsseExemplar = livroEmprestado.stream().anyMatch(l -> l.getId() == livro.getId());
+       if (jaPossuiEsseExemplar){
+           System.out.println("Você ja esta com esse livro");
+           return;
+       }
+
        if (this.saldo.getSaldoDevedor() >= getLimiteSaldo() || livroEmprestado.size() >= getLimiteLivros()){
            System.out.println("Saldo devedor atingiu o limite, por favor realize o pagameto");
-       }else{
-        livroEmprestado.add(livro);
-        saldo.registrarEmprestimo();
-       }
+        }else{
+           livroEmprestado.add(livro);
+            saldo.registrarEmprestimo();
+        }
     }
 
     public void devolverLivro (Livro livro, int diasCorridos){
 
         boolean possuiOLivro = livroEmprestado.stream()
-                .anyMatch(l -> l.getTitulo().equalsIgnoreCase(livro.getTitulo()));
+                .anyMatch(l -> l.getId() == livro.getId());
 
         if (possuiOLivro){
             int prazo = 7;
@@ -55,12 +61,12 @@ public abstract class Usuario {
                 double valorMulta = diasAtraso * 2;
                 this.saldo.registrarMulta(valorMulta);
 
-                System.out.println("Livro devolvido com atraso de "+diasAtraso + " dias.");
+                System.out.println("Livro devolvido com atraso de " + diasAtraso + " dias.");
                 System.out.println("Multa de " + valorMulta + " R$ aplicada");
             } else {
                 System.out.println("livro devolvido no prazo.");
             }
-            livroEmprestado.removeIf(l -> l.getTitulo().equalsIgnoreCase(livro.getTitulo()));
+            livroEmprestado.removeIf(l -> l.getId() == livro.getId());
 
 
         }else {
