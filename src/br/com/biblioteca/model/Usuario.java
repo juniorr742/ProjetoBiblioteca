@@ -1,3 +1,5 @@
+package br.com.biblioteca.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +63,7 @@ public abstract class Usuario {
                 double valorMulta = diasAtraso * 2;
                 this.saldo.registrarMulta(valorMulta);
 
-                System.out.println("Livro devolvido com atraso de " + diasAtraso + " dias.");
+                System.out.println("br.com.biblioteca.model.Livro devolvido com atraso de " + diasAtraso + " dias.");
                 System.out.println("Multa de " + valorMulta + " R$ aplicada");
             } else {
                 System.out.println("livro devolvido no prazo.");
@@ -71,7 +73,7 @@ public abstract class Usuario {
 
 
         }else {
-            System.out.println("Livro não encontrado com esse usuário");
+            System.out.println("br.com.biblioteca.model.Livro não encontrado com esse usuário");
         }
 
 

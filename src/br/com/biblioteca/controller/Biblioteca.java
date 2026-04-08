@@ -1,3 +1,9 @@
+package br.com.biblioteca.controller;
+
+import br.com.biblioteca.model.Livro;
+import br.com.biblioteca.model.RegistroEmprestimo;
+import br.com.biblioteca.model.Usuario;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,9 +99,9 @@ public class Biblioteca {
                }
                usuarioEncontrado.devolverLivro(livroEncontrado, (int) diasCorridos);
                livroEncontrado.setDisponivel(true);
-               System.out.println("Livro devolvido!");
+               System.out.println("br.com.biblioteca.model.Livro devolvido!");
            } else {
-               System.out.println("Livro não encontrado");
+               System.out.println("br.com.biblioteca.model.Livro não encontrado");
            }
 
        }
@@ -105,7 +111,7 @@ public class Biblioteca {
         Usuario usuarioEncontrado = buscarUsuariosPorId(idUsuario);
         if (livroEncontrado != null && usuarioEncontrado != null) {
             if (!livroEncontrado.isDisponivel()){
-                System.out.println("Livro ja está emprestado!");
+                System.out.println("br.com.biblioteca.model.Livro ja está emprestado!");
             }else if(usuarioEncontrado.getSaldo().getSaldoDevedor() >= usuarioEncontrado.getLimiteSaldo()){
                 System.out.println("Limite atingido, realize o pagamento!");
             }else {
@@ -117,7 +123,7 @@ public class Biblioteca {
                 System.out.println("Registro de transação gerado com sucesso: ID " + novoRegistro.getIdTransacao());
             }
         }else {
-            System.out.println("Livro ou usuário não encontrado!");
+            System.out.println("br.com.biblioteca.model.Livro ou usuário não encontrado!");
         }
     }
 

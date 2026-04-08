@@ -1,3 +1,5 @@
+package br.com.biblioteca.model;
+
 import java.time.LocalDate;
 
 public class RegistroEmprestimo {
@@ -45,7 +47,7 @@ public class RegistroEmprestimo {
 
     @Override
     public String toString(){
-        return String.format("Transação: %d | Usuário ID: %d | Livro ID: %d | Data: %s | Status: %s",
+        return String.format("Transação: %d | Usuário ID: %d | br.com.biblioteca.model.Livro ID: %d | Data: %s | Status: %s",
                 idTransacao, idUsuario, idLivro, dataEmprestimo, (finalizado ? "Devolvido":"Ativo"));
     }
 

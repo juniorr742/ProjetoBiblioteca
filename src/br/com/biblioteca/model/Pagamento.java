@@ -1,3 +1,5 @@
+package br.com.biblioteca.model;
+
 import java.time.LocalDateTime;
 
 public class Pagamento {
@@ -23,13 +25,13 @@ public class Pagamento {
     public void registrarEmprestimo(){
         this.saldoDevedor += custoFixo;
         this.dataUltimaOperacao = LocalDateTime.now();
-        System.out.println("Empréstimo realizado com sucesso! (ID Pagamento: " + id +")");
+        System.out.println("Empréstimo realizado com sucesso! (ID br.com.biblioteca.model.Pagamento: " + id +")");
     }
 
 
     public void quitarDivida (){
         if (this.saldoDevedor > 0){
-            System.out.printf("Saldo de: %.2f. Pagamento realizado com sucesso!\n", saldoDevedor);
+            System.out.printf("Saldo de: %.2f. br.com.biblioteca.model.Pagamento realizado com sucesso!\n", saldoDevedor);
             this.saldoDevedor = 0;
             this.dataUltimaOperacao = LocalDateTime.now();
         }else {

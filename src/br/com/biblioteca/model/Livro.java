@@ -1,3 +1,5 @@
+package br.com.biblioteca.model;
+
 import java.util.Objects;
 
 public class Livro {

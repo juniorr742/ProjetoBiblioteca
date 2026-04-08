@@ -1,4 +1,4 @@
-Sistema de Gestão de Biblioteca v2.0
+Sistema de Gestão de br.com.biblioteca.controller.Biblioteca v2.0
 
 Sistema em Java para gerenciamento de empréstimos, devoluções e controle financeiro de uma biblioteca acadêmica.
 
@@ -17,7 +17,7 @@ Persistência de Dados: Salvamento e carregamento de dados via arquivos .txt (CS
 🛠️ Conceitos de Programação Aplicados
 Este projeto foi desenvolvido focando em Clean Code e nos pilares da Programação Orientada a Objetos (POO):
 
-Abstração e Herança: Classe Usuario como base para Aluno e Professor.
+Abstração e Herança: Classe br.com.biblioteca.model.Usuario como base para br.com.biblioteca.model.Aluno e br.com.biblioteca.model.Professor.
 
 Polimorfismo: Métodos de limites de livros e saldo que se comportam de forma diferente dependendo do tipo de usuário.
 
@@ -28,16 +28,16 @@ Java Time API: Uso de LocalDate e ChronoUnit para cálculos precisos de prazos e
 📊 Estrutura do Banco de Dados (Lógica Relacional)
 Embora o projeto utilize arquivos de texto, a estrutura foi pensada para futura migração para SQL:
 
-Entidades: Usuário, Livro, Pagamento.
+Entidades: Usuário, br.com.biblioteca.model.Livro, br.com.biblioteca.model.Pagamento.
 
-Relacionamento: RegistroEmprestimo (Tabela associativa que liga Usuário e Livro).
+Relacionamento: br.com.biblioteca.model.RegistroEmprestimo (Tabela associativa que liga Usuário e br.com.biblioteca.model.Livro).
 
 💻 Como Executar
 Clone o repositório.
 
 Certifique-se de ter o JDK 17 ou superior instalado.
 
-Compile e rode a classe Main.java.
+Compile e rode a classe br.com.biblioteca.view.Main.java.
 
 Os dados serão salvos automaticamente em arquivos .txt na raiz do projeto ao sair.
 

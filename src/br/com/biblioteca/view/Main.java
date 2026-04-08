@@ -1,3 +1,9 @@
+package br.com.biblioteca.view;
+
+import br.com.biblioteca.controller.Biblioteca;
+import br.com.biblioteca.dao.GerencidorDeArquivos;
+import br.com.biblioteca.model.Livro;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +18,7 @@ class Main {
         minhaBiblioteca.setAcervo(livrosSalvos);
 
         do {
-            System.out.println("Bem-vindo ao Menu Biblioteca!!!");
+            System.out.println("Bem-vindo ao Menu br.com.biblioteca.controller.Biblioteca!!!");
             System.out.println("Digite a opção desejada: ");
             System.out.println("[1] - Usuário");
             System.out.println("[2] - Livros");

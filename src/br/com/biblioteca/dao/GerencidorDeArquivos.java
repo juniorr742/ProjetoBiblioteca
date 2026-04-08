@@ -1,3 +1,7 @@
+package br.com.biblioteca.dao;
+
+import br.com.biblioteca.model.Livro;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,3 +1,5 @@
+package br.com.biblioteca.model;
+
 public class  Professor extends Usuario {
     public Professor(String nome){
         super(nome);

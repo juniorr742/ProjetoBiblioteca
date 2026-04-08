@@ -1,3 +1,8 @@
+package br.com.biblioteca.view;
+
+import br.com.biblioteca.controller.Biblioteca;
+import br.com.biblioteca.model.*;
+
 import java.util.Scanner;
 
 public class menuGeral {
@@ -35,7 +40,7 @@ public class menuGeral {
                         Usuario alunoNovo = new Aluno(nomeAluno);
                         info.adicionarUsuario(alunoNovo);
 
-                        System.out.println("Aluno cadastrado com sucesso, seu novo id é: " + alunoNovo.getId());
+                        System.out.println("br.com.biblioteca.model.Aluno cadastrado com sucesso, seu novo id é: " + alunoNovo.getId());
                     } else {
                         System.out.println("Digite seu nome: ");
                         String nomeProfessor = sc.nextLine();
@@ -43,7 +48,7 @@ public class menuGeral {
                         Usuario professorNovo = new Professor(nomeProfessor);
                         info.adicionarUsuario(professorNovo);
 
-                        System.out.println("Professor cadastrado com sucesso, seu novo id é: " + professorNovo.getId());
+                        System.out.println("br.com.biblioteca.model.Professor cadastrado com sucesso, seu novo id é: " + professorNovo.getId());
                     }
                     break;
                 case 2:
@@ -90,7 +95,7 @@ public class menuGeral {
                     String nomeAutor = sc.nextLine();
                     Livro novoLivro = new Livro(nomeLivro, nomeAutor);
                     info.adicionarLivro(novoLivro);
-                    System.out.println("Livro cadastrado com sucesso!");
+                    System.out.println("br.com.biblioteca.model.Livro cadastrado com sucesso!");
                     break;
                 case 2:
                     System.out.println("livros cadastrados: ");
@@ -101,7 +106,7 @@ public class menuGeral {
                     String livro = sc.nextLine();
                     info.procurarLivroPorTitulo(livro);
                     if(livro != null){
-                        System.out.println("Livro encontrado: " + livro);
+                        System.out.println("br.com.biblioteca.model.Livro encontrado: " + livro);
                     }else {
                         System.out.println("O livro não se encontra nessa biblioteca.");
                     }
