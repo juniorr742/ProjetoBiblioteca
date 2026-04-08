@@ -140,7 +140,12 @@ public class Biblioteca {
         }
     }
 
-
-
+    public List<Livro> getAcervo() {
+        return acervo;
     }
+
+    public void setAcervo(List<Livro> acervo) {
+        this.acervo = acervo;
+    }
+}
 
