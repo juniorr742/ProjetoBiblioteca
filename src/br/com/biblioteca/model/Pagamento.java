@@ -63,6 +63,10 @@ public class Pagamento {
         return custoFixo;
     }
 
+    public void setSaldoDevedor(double saldoDevedor) {
+        this.saldoDevedor = saldoDevedor;
+    }
+
     @Override
     public String toString() {
         return "R$ " + this.saldoDevedor;

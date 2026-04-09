@@ -27,6 +27,10 @@ public class Livro {
 
     public String getTitulo() {
             return titulo; }
+
+    public String getAutor() {
+        return autor;
+    }
     public void setDisponivel(boolean disponivel) {
             this.disponivel = disponivel;}
     public boolean isDisponivel() {
