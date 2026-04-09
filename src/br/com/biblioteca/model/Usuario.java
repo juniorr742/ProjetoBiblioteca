@@ -86,6 +86,11 @@ public abstract class Usuario {
     public abstract double getLimiteSaldo();
     public abstract int getLimiteLivros();
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     public void listarLista(){
        if (livroEmprestado.isEmpty()){
            System.out.println("Você não tem nenhum livro");
