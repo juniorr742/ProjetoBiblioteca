@@ -1,6 +1,7 @@
 package br.com.biblioteca.view;
 
 import br.com.biblioteca.controller.Biblioteca;
+import br.com.biblioteca.dao.LivroDAO;
 import br.com.biblioteca.model.*;
 
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class menuGeral {
     Scanner sc = new Scanner(System.in);
     private Biblioteca info;
+    LivroDAO meuBanco = new LivroDAO();
 
 
     public menuGeral(Biblioteca biblioteca) {
@@ -94,7 +96,7 @@ public class menuGeral {
                     System.out.println("Digite o nome do autor: ");
                     String nomeAutor = sc.nextLine();
                     Livro novoLivro = new Livro(nomeLivro, nomeAutor);
-                    info.adicionarLivro(novoLivro);
+                    meuBanco.salvar(novoLivro);
                     System.out.println("br.com.biblioteca.model.Livro cadastrado com sucesso!");
                     break;
                 case 2:
