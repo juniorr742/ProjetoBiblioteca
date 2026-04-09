@@ -1,0 +1,23 @@
+public class Livro {
+    private String titulo;
+    private String autor;
+    private boolean disponivel;
+    private int prazo = 7;
+
+        public Livro(String titulo, String autor) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.disponivel = true;
+         }
+
+        public String getTitulo(){return titulo; }
+        public void setDisponivel(boolean disponivel) {this.disponivel = disponivel;}
+        public boolean isDisponivel() {return disponivel;}
+
+    @Override
+    public String toString() {
+
+        return "Título: " + this.titulo + " (Autor: " + this.autor + ")";
+    }
+
+}
