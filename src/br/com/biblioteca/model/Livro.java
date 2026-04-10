@@ -10,6 +10,7 @@ public class Livro {
     private int prazo = 7;
     int id;
 
+    //todo: ajustar identação
         public Livro(String titulo, String autor) {
             if (titulo == null || titulo.isBlank()){
                 this.titulo = "Título indefinido";
@@ -31,6 +32,7 @@ public class Livro {
     public String getAutor() {
         return autor;
     }
+    //todo: pular linha entre metodos para melhorar a legibilidade
     public void setDisponivel(boolean disponivel) {
             this.disponivel = disponivel;}
     public boolean isDisponivel() {

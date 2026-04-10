@@ -13,6 +13,7 @@ public class LivroDAO {
       public void salvar(Livro livro){
           String sql = "INSERT INTO livros (titulo, autor, disponivel) VALUES (?, ?, ?)"; //O COMANDO
 
+        //todo: criar classe de conexão para evitar repetição de código, e facilitar a manutenção. Assim, se precisar mudar a forma de conexão, ou os dados de acesso, só precisa mudar em um lugar.
           try (Connection conn = DriverManager.getConnection(url, user, password);
           PreparedStatement stmt = conn.prepareStatement(sql)) {                    //A CONEXAO
 

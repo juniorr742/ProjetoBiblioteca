@@ -8,9 +8,10 @@ import java.util.Scanner;
 
 public class menuGeral {
     Scanner sc = new Scanner(System.in);
+    //todo: nome da variável info não é muito intuitivo, talvez seja melhor algo como "biblioteca" ou "sistemaBiblioteca"
     private Biblioteca info;
     LivroDAO meuBanco = new LivroDAO();
-
+    //todo: linha vazia
 
     public menuGeral(Biblioteca biblioteca) {
         this.info = biblioteca;
@@ -19,10 +20,11 @@ public class menuGeral {
     public void menuUsuario() {
 
         boolean continuarUsuario = true;
-
+        //todo: linha vazia
 
         do {
             System.out.println("Digite sua opção no menu usuário: ");
+            //todo: [1] cadastrar Aluno, [2] cadastrar Professor.. etc
             System.out.println("[1] - Cadastrar usuário");
             System.out.println("[2] - Verificar status");
             System.out.println("[3] - Sair");
@@ -34,8 +36,11 @@ public class menuGeral {
                     System.out.println("Você é aluno ou professor?");
                     sc.nextLine();
                     String subUsuario = sc.nextLine();
-
+                    
                     if (subUsuario.equalsIgnoreCase("aluno")) {
+                        //todo: implementar metodo privado para organizar melhor o codigo ex: cadastrarUsuario(subUsuario).
+                        // se tiver uma serviço de usuario, o cadastro poderia ser feito lá, e aqui no menuUsuario() só chamaria o serviço de cadastro passando o tipo do usuário como parâmetro.
+                        //  olhar todo [1] da classe BibliotecaController para mais detalhes.;
                         System.out.println("Digite seu nome: ");
                         String nomeAluno = sc.nextLine();
 
@@ -70,6 +75,8 @@ public class menuGeral {
                 case 3:
                     continuarUsuario = false;
                     break;
+
+                //todo: o que acontece se o usuário digitar um número diferente de 1, 2, 3 ou 4?
             }
 
 

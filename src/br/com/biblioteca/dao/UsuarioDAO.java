@@ -14,6 +14,8 @@ public class UsuarioDAO {
     private String user =  "root";
     private String password = "admin123";
 
+//todo: na classe de acessso a banco de dados, seria interessante manter apenas os métodos relacionados ao acesso a dados, como salvar, buscar por id, atualizar, deletar, etc.
+// e as regras de negócio relacionadas a usuario, como pegarLivro(), devolverLivro(), etc, poderiam ser movidas para a classe UsuarioService, assim o código fica mais organizado e fácil de manter.
     public void salvar(Usuario usuario){
         String sql = "INSERT INTO usuarios (nome, tipo, saldo_devedor) VALUES (?, ?, ?)";
 
@@ -21,6 +23,9 @@ public class UsuarioDAO {
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, usuario.getNome());
 
+            //todo: aqui por exemplo, existe regra pra entender o tipo do usuario, e isso é uma regra de negócio, 
+            // então o ideal seria ter um método na classe UsuarioService que retornasse o tipo do usuário como string, 
+            // e aqui no DAO só chamaria esse método para setar o tipo no banco. Assim, o código fica mais organizado e fácil de manter.
             if (usuario instanceof Aluno){
                 stmt.setString(2, "Aluno");
             }else {
@@ -35,6 +40,7 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
+
 
     public Usuario buscarporId(int id){
         String sql = "SELECT * FROM usuarios WHERE id = ?";

@@ -6,11 +6,14 @@ import java.util.List;
 
 
 public abstract class Usuario {
+    //todo: muito bom  as propriedades, assim só a propria classe Usuario tem acesso a elas, e as classes filhas (Aluno e Professor) tem acesso através dos métodos públicos.
+    //  isso é um exemplo de encapsulamento, um dos pilares da programação orientada a objetos.
     private static int contadorId = 1;
     private int id;
     private String nome;
     private List<Livro> livroEmprestado;
     private Pagamento saldo;
+    
 
 
 
@@ -33,7 +36,7 @@ public abstract class Usuario {
     }
 
 
-
+    
     public void pegarLivro(Livro livro){
 
        boolean jaPossuiEsseExemplar = livroEmprestado.stream().anyMatch(l -> l.getId() == livro.getId());

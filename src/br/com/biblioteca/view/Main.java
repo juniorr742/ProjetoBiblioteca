@@ -35,6 +35,8 @@ class Main {
                 case 4:
                     continuarRodar = false;
                     break;
+
+                //todo: o que acontece se o usuário digitar um número diferente de 1, 2, 3 ou 4?
             }
         } while (continuarRodar);
     }

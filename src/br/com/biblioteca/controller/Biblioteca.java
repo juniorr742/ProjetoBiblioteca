@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.temporal.ChronoUnit;
 
+//todo [1]: Uma Controller geralmente é usada para APIs, e tem uma responsabilidade bem definada que é apenas gerenciar as requisições e respostas, sem conter regras de negócio.
+//  O ideal seria criar uma classe "BibliotecaService"  para conter as regras de negócio,
+//  e a classe "BibliotecaController" para gerenciar as requisições e respostas (que nao é o caso dessa app console). Dessa forma, o código fica mais organizado e fácil de manter.
+//
+// sugestão: criar "serviços" separados para cada entidade, ex: UsuarioService, LivroService, etc. assim as responsabilidades ficam mais claras e o código mais organizado.
+//  remover essa classe biblioteca e distribuir as responsabilidades para os serviços,
+//  dessa forma o código fica mais organizado e fácil de manter.
 public class Biblioteca {
     private List<Livro> acervo;
     private List<Usuario> usuarios;
