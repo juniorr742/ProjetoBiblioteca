@@ -7,11 +7,11 @@ import java.util.List;
 
 public class EmprestimoService {
     private ValidadorEmprestimo validador;
-    private CalcularMulta calcMulta;
+    private CalculadoraMulta calculadora;
 
-    public EmprestimoService(){
-        this.validador = new ValidadorEmprestimo();
-        this.calcMulta = new CalcularMulta();
+    public EmprestimoService(ValidadorEmprestimo validador, CalculadoraMulta calculadora){
+        this.validador = validador;
+        this.calculadora = calculadora;
     }
 
 
@@ -34,7 +34,7 @@ public class EmprestimoService {
             return;
         }
 
-        double valorMulta = calcMulta.valorCalculado(diasCorridos);
+        double valorMulta = calculadora.valorCalculado(diasCorridos);
         if (valorMulta > 0){
             System.out.println("Multa de R$:"+valorMulta);
             usuario.getSaldo().registrarMulta(valorMulta);
