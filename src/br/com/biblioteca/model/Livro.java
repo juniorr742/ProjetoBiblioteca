@@ -3,7 +3,6 @@ package br.com.biblioteca.model;
 import java.util.Objects;
 
 public class Livro {
-    private static int contadorId = 1;
     private String titulo;
     private String autor;
     private boolean disponivel;
@@ -18,12 +17,8 @@ public class Livro {
             }
             this.autor = autor;
             this.disponivel = true;
-            this.id = contadorId;
-            contadorId++;
-
+            this.id = id;
          }
-
-
 
     public String getTitulo() {
             return titulo; }
@@ -45,7 +40,6 @@ public class Livro {
 
     @Override
     public String toString() {
-
         return  "Id: " + getId() + "Título: " + this.titulo + " (Autor: " + this.autor + ")";
     }
 
@@ -55,7 +49,6 @@ public class Livro {
         Livro livro = (Livro) o;
         return Objects.equals(titulo, livro.titulo);
     }
-
     @Override
     public int hashCode() {
         return Objects.hashCode(titulo);
