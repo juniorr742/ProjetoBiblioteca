@@ -3,7 +3,6 @@ package br.com.biblioteca.model;
 import java.time.LocalDate;
 
 public class RegistroEmprestimo {
-    private static int contadorId = 1;
     private int idTransacao;
     private int idUsuario;
     private int idLivro;
@@ -12,7 +11,6 @@ public class RegistroEmprestimo {
     private boolean finalizado;
 
     public RegistroEmprestimo(int idUsuario, int idLivro){
-        this.idTransacao = contadorId++;
         this.idUsuario = idUsuario;
         this.idLivro = idLivro;
         this.dataEmprestimo = LocalDate.now();
@@ -44,14 +42,9 @@ public class RegistroEmprestimo {
         this.finalizado = true;
     }
 
-
     @Override
     public String toString(){
         return String.format("Transação: %d | Usuário ID: %d | br.com.biblioteca.model.Livro ID: %d | Data: %s | Status: %s",
                 idTransacao, idUsuario, idLivro, dataEmprestimo, (finalizado ? "Devolvido":"Ativo"));
     }
-
-
-
-
 }
