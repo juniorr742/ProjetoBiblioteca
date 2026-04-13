@@ -1,6 +1,6 @@
 package br.com.biblioteca.service;
 
-public class CalcularMulta {
+public class CalculadoraMulta {
     public static final int PRAZO_PADRAO = 7;
     public static final double VALOR_MULTA_DIARIA = 2.0;
 
