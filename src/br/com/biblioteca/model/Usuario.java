@@ -20,6 +20,14 @@ public abstract class Usuario {
         this.saldo = new Pagamento();
     }
 
+    public void adicionarLivro(Livro livro){
+        this.livroEmprestado.add(livro);
+    }
+
+    public void removerLivro(Livro livro){
+        this.livroEmprestado.removeIf(l -> l.getId() == livro.getId());
+    }
+
     public String getNome(){return nome;}
     public Integer getId(){return id;}
     public  List<Livro> getlivroEmprestado(){return Collections.unmodifiableList(livroEmprestado);}
