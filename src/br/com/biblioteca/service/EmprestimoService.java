@@ -6,23 +6,23 @@ import br.com.biblioteca.model.Usuario;
 import java.util.List;
 
 public class EmprestimoService {
+    private ValidadorEmprestimo validador;
+    private CalcularMulta calcMulta;
+
+    public EmprestimoService(){
+        this.validador = new ValidadorEmprestimo();
+        this.calcMulta = new CalcularMulta();
+    }
+
 
     public void emprestarLivro(Usuario usuario, Livro livro){
-        boolean jaPossuiEsseExemplar = usuario.getlivroEmprestado().stream()
-                .anyMatch(l -> l.getId() == livro.getId());
-
-        if (jaPossuiEsseExemplar){
-            System.out.println("O usuário já está em posse desse livro!");
-            return;
-        }
-
-        if (usuario.getSaldo().getSaldoDevedor() > usuario.getLimiteSaldo() || usuario.getlivroEmprestado().size() > usuario.getLimiteLivros()){
-            System.out.println("Limite atingido , por favor realize o pagamento!");
-            return;
-        }
+        if (!validador.podeEmprestar(usuario,livro)){
+            System.out.println("Empréstimo cancelado, erro de validação");
+        }else {
             usuario.getSaldo().registrarEmprestimo();
-            usuario.getlivroEmprestado().add(livro);
+            usuario.adicionarLivro(livro);
             System.out.println("Livro" + livro.getTitulo() + "emprestado com sucesso!");
+        }
     }
 
     public void realizarDevolucao(Usuario usuario, Livro livro, int diasCorridos){
@@ -34,17 +34,15 @@ public class EmprestimoService {
             return;
         }
 
-        int prazo = 7;
-
-        if (diasCorridos > prazo){
-            double valorMulta = (diasCorridos - prazo) * 2;
+        double valorMulta = calcMulta.valorCalculado(diasCorridos);
+        if (valorMulta > 0){
+            System.out.println("Multa de R$:"+valorMulta);
             usuario.getSaldo().registrarMulta(valorMulta);
-            System.out.println("Multa de R$:" + valorMulta + "aplicada por atraso.");
-            return;
+        }else {
+            System.out.println("Livro devolvido no prazo!");
         }
-
-        usuario.getlivroEmprestado().remove(livro);
-        System.out.println("Livro devolvido no prazo!");
+        usuario.removerLivro(livro);
+        System.out.println("O livro "+ livro.getTitulo() + " foi devolvido com sucesso!");
     }
 
     public List<Livro> livrosAtivosDoUsuario(Usuario usuario){
