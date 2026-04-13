@@ -14,4 +14,9 @@ public class Aluno extends Usuario {
     public int getLimiteLivros(){
         return 3;
     }
+
+    @Override
+    public String obterTipo(){
+        return "Aluno";
+    }
 }
