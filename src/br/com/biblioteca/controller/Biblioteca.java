@@ -3,9 +3,12 @@ package br.com.biblioteca.controller;
 import br.com.biblioteca.model.Livro;
 import br.com.biblioteca.model.RegistroEmprestimo;
 import br.com.biblioteca.model.Usuario;
+import br.com.biblioteca.service.EmprestimoService;
+import br.com.biblioteca.service.PagamentoService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.time.temporal.ChronoUnit;
 
@@ -13,30 +16,24 @@ public class Biblioteca {
     private List<Livro> acervo;
     private List<Usuario> usuarios;
     private List<RegistroEmprestimo> historicoEmprestimos;
+    private PagamentoService pagamentoService;
+    private EmprestimoService emprestimoService;
 
 
-    public Biblioteca(){
+    public Biblioteca(PagamentoService pagamentoService, EmprestimoService emprestimoService){
         this.acervo = new ArrayList<>();
         this.usuarios = new ArrayList<>();
         this.historicoEmprestimos = new ArrayList<>();
+        this.pagamentoService = pagamentoService;
+        this.emprestimoService = emprestimoService;
     }
 
-    public Usuario buscarUsuariosPorId(int IdProcurado){
-        for (Usuario u: usuarios){
-            if (u.getId() == IdProcurado){
-                return u;
-            }
-        }
-            return null;
-        }
+    public Usuario buscarUsuariosPorId(int id){
+        return usuarios.stream().filter(u -> u.getId() == id).findFirst().orElse(null);
+    }
 
-    public Livro bucarLivroPorId(int id){
-        for (Livro l: acervo){
-            if (l.getId() == id){
-                return l;
-            }
-        }
-        return null;
+    public Livro buscarLivroPorId(int id){
+        return acervo.stream().filter(l -> l.getId() == id).findFirst().orElse(null);
     }
 
 
@@ -44,87 +41,67 @@ public class Biblioteca {
         usuarios.add(novoUsuario);
     }
 
-    public void listarUsuarios(){
-
-       if (usuarios.isEmpty()){
-           System.out.println("Lista de usuários vazia!!!");
-       }else {
-           for (Usuario l: usuarios){
-                 System.out.println(l);
-           }
-       }
-    }
-
-    public void listarLivros(){
-
-        if (acervo.isEmpty()){
-            System.out.println("Lista de Livros vazia!!!");
-        }else {
-            for (Livro l: acervo){
-                System.out.println(l);
-            }
-        }
-    }
-
-    public String procurarLivroPorTitulo(String livroProcurar){
-        if (livroProcurar == null || livroProcurar.isBlank()) return null;
-
-        for (Livro l : acervo) {
-            if (l.getTitulo().equalsIgnoreCase(livroProcurar.trim())) {
-                    return "ID do livro: " + l.getId();
-            }
-        }
-            return null;
-    }
-
-
-
     public void adicionarLivro(Livro livro){
         acervo.add(livro);
     }
 
-   public void devolverLivro(int idLivro, int idUsuario) {
-       Livro livroEncontrado = bucarLivroPorId(idLivro);
-       Usuario usuarioEncontrado = buscarUsuariosPorId(idUsuario);
-           if (livroEncontrado != null && usuarioEncontrado != null) {
-               long diasCorridos = 0;
+    public List<Usuario> listarTodosUsuarios(){
+        return Collections.unmodifiableList(usuarios);
+    }
 
-               for(RegistroEmprestimo re: historicoEmprestimos){
-                   if (re.getIdLivro() == idLivro && re.getIdUsuario() == idUsuario && !re.isFinalizado()){
-                       diasCorridos = ChronoUnit.DAYS.between(re.getDataEmprestimo(), LocalDate.now());
-                       re.finalizarEmprestimo();
-                       System.out.println("Transação de histórico " + re.getIdTransacao() + " encerrada.");
-                       break;
-                   }
-               }
-               usuarioEncontrado.devolverLivro(livroEncontrado, (int) diasCorridos);
-               livroEncontrado.setDisponivel(true);
-               System.out.println("br.com.biblioteca.model.Livro devolvido!");
-           } else {
-               System.out.println("br.com.biblioteca.model.Livro não encontrado");
-           }
+    public List<Livro> listarTodosLivros(){
+        return Collections.unmodifiableList(acervo);
+    }
 
+     public void listarHistorico(){
+         System.out.println("\n=====HISTÓRICO DOS REGISTROS=====");
+         historicoEmprestimos.forEach(System.out::println);
+     }
+
+    public List<Livro> procurarLivroPorTitulo(String termoBusca){
+        if (termoBusca == null || termoBusca.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        String termoTradado = termoBusca.toLowerCase().trim();
+
+        return acervo.stream().filter(l -> l.getTitulo().toLowerCase().contains(termoTradado)).toList();
+    }
+
+    public List<Usuario> procurarUsuarioPorNome(String termoBusca){
+        if (termoBusca == null || termoBusca.isBlank()){
+            return new ArrayList<>();
+        }
+
+        String termoTratado = termoBusca.toLowerCase().trim();
+
+        return usuarios.stream().filter(u -> u.getNome().toLowerCase().contains(termoTratado)).toList();
+    }
+
+   public void devolverLivro(int idLivro, int idUsuario, int diasCorridos) {
+       Usuario usuario = buscarUsuariosPorId(idUsuario);
+       Livro livro = buscarLivroPorId(idLivro);
+       if (usuario != null && livro != null) {
+           emprestimoService.realizarDevolucao(usuario, livro, diasCorridos);
+           historicoEmprestimos.stream().filter(h -> h.getIdLivro() == idLivro && h.getIdUsuario() == idUsuario && !h.isFinalizado())
+                   .findFirst().ifPresent(RegistroEmprestimo::finalizarEmprestimo);
        }
 
+   }
+
     public void emprestarLivro(int idLivro, int idUsuario) {
-        Livro livroEncontrado = bucarLivroPorId(idLivro);
+        Livro livroEncontrado = buscarLivroPorId(idLivro);
         Usuario usuarioEncontrado = buscarUsuariosPorId(idUsuario);
-        if (livroEncontrado != null && usuarioEncontrado != null) {
-            if (!livroEncontrado.isDisponivel()){
-                System.out.println("br.com.biblioteca.model.Livro ja está emprestado!");
-            }else if(usuarioEncontrado.getSaldo().getSaldoDevedor() >= usuarioEncontrado.getLimiteSaldo()){
-                System.out.println("Limite atingido, realize o pagamento!");
-            }else {
-                livroEncontrado.setDisponivel(false);
-                usuarioEncontrado.getlivroEmprestado().add(livroEncontrado);
-                usuarioEncontrado.getSaldo().registrarEmprestimo();
-                RegistroEmprestimo novoRegistro = new RegistroEmprestimo(idUsuario,idLivro);
-                historicoEmprestimos.add(novoRegistro);
-                System.out.println("Registro de transação gerado com sucesso: ID " + novoRegistro.getIdTransacao());
-            }
-        }else {
-            System.out.println("br.com.biblioteca.model.Livro ou usuário não encontrado!");
+        if (livroEncontrado == null && usuarioEncontrado == null) {
+            System.out.println("ERRO: livro ou usuário não encontrado");
         }
+        emprestimoService.emprestarLivro(usuarioEncontrado, livroEncontrado);
+            if (!livroEncontrado.isDisponivel()){
+                RegistroEmprestimo novoRegistro = new RegistroEmprestimo(idUsuario, idLivro);
+                historicoEmprestimos.add(novoRegistro);
+                System.out.println("Hisórico gerado: Transação #"+ novoRegistro.getIdTransacao());
+            }
+
     }
 
     public void verificarSaldo(int idPagamento){
@@ -140,18 +117,10 @@ public class Biblioteca {
     public void realizarPagamento(int id){
         Usuario usuarioEcontrado = buscarUsuariosPorId(id);
         if (usuarioEcontrado != null){
-            usuarioEcontrado.getSaldo().quitarDivida();
+            pagamentoService.processarPagamentoTotal(usuarioEcontrado);
         } else {
             System.out.println("Erro: Usuário: " + id + "não encontrado.");
         }
-    }
-
-    public List<Livro> getAcervo() {
-        return acervo;
-    }
-
-    public void setAcervo(List<Livro> acervo) {
-        this.acervo = acervo;
     }
 }
 
