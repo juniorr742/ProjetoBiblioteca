@@ -1,14 +1,16 @@
 package br.com.biblioteca.service;
 
+import br.com.biblioteca.config.BibliotecaConfig;
+
 public class CalculadoraMulta {
-    public static final int PRAZO_PADRAO = 7;
-    public static final double VALOR_MULTA_DIARIA = 2.0;
+    int prazo = BibliotecaConfig.PRAZO_DEVOLUCO_PADRAO_DIAS;
+    double multaDiária = BibliotecaConfig.VALOR_MULTA_DIARIA;
 
     public double valorCalculado(int diasCorridos){
-        if (diasCorridos < PRAZO_PADRAO){
+        if (diasCorridos < prazo){
             return 0.0;
         }
-        double valor = (diasCorridos - PRAZO_PADRAO) * VALOR_MULTA_DIARIA;
+        double valor = (diasCorridos - prazo) * multaDiária;
         return valor;
     }
 }

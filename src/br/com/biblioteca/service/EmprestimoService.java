@@ -8,10 +8,12 @@ import java.util.List;
 public class EmprestimoService {
     private ValidadorEmprestimo validador;
     private CalculadoraMulta calculadora;
+    private PagamentoService pagamento;
 
-    public EmprestimoService(ValidadorEmprestimo validador, CalculadoraMulta calculadora){
+    public EmprestimoService(ValidadorEmprestimo validador, CalculadoraMulta calculadora, PagamentoService pagamento){
         this.validador = validador;
         this.calculadora = calculadora;
+        this.pagamento = pagamento;
     }
 
 
@@ -19,8 +21,9 @@ public class EmprestimoService {
         if (!validador.podeEmprestar(usuario,livro)){
             System.out.println("Empréstimo cancelado, erro de validação");
         }else {
-            usuario.getSaldo().registrarEmprestimo();
+            pagamento.aplicarTaxaEmprestimo(usuario);
             usuario.adicionarLivro(livro);
+            livro.setDisponivel(false);
             System.out.println("Livro" + livro.getTitulo() + "emprestado com sucesso!");
         }
     }
@@ -36,12 +39,14 @@ public class EmprestimoService {
 
         double valorMulta = calculadora.valorCalculado(diasCorridos);
         if (valorMulta > 0){
-            System.out.println("Multa de R$:"+valorMulta);
-            usuario.getSaldo().registrarMulta(valorMulta);
+            System.out.println("Multa de R$:"+valorMulta + " registrada.");
+            pagamento.aplicarMultaAtraso(usuario, valorMulta);
+            System.out.println("Livro devolvido com sucesso!");
         }else {
             System.out.println("Livro devolvido no prazo!");
         }
         usuario.removerLivro(livro);
+        livro.setDisponivel(true);
         System.out.println("O livro "+ livro.getTitulo() + " foi devolvido com sucesso!");
     }
 
