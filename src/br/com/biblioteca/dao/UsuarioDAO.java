@@ -36,7 +36,7 @@ public class UsuarioDAO {
         }
     }
 
-    public Usuario buscarporId(int id){
+   /* public Usuario buscarporId(int id){
         String sql = "SELECT * FROM usuarios WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(url, user, password);
         PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -57,7 +57,7 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 
 
 }
