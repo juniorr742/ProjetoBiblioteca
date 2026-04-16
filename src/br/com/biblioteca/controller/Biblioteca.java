@@ -85,6 +85,8 @@ public class Biblioteca {
            emprestimoService.realizarDevolucao(usuario, livro, diasCorridos);
            historicoEmprestimos.stream().filter(h -> h.getIdLivro() == idLivro && h.getIdUsuario() == idUsuario && !h.isFinalizado())
                    .findFirst().ifPresent(RegistroEmprestimo::finalizarEmprestimo);
+       } else {
+           System.out.println("[AVISO] - Usuário ou livro não encontrado.");
        }
 
    }
@@ -100,6 +102,8 @@ public class Biblioteca {
                 RegistroEmprestimo novoRegistro = new RegistroEmprestimo(idUsuario, idLivro);
                 historicoEmprestimos.add(novoRegistro);
                 System.out.println("Hisórico gerado: Transação #"+ novoRegistro.getIdTransacao());
+            }else {
+                System.out.println("[AVISO] Erro ao realizar empréstimo");
             }
 
     }

@@ -1,50 +1,25 @@
 package br.com.biblioteca.view;
 
 import br.com.biblioteca.controller.Biblioteca;
-
+import br.com.biblioteca.service.*;
 import java.util.Scanner;
 
-class Main {
-
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        boolean continuarRodar = true;
-        Biblioteca minhaBiblioteca = new Biblioteca();
-        menuGeral menu = new menuGeral(minhaBiblioteca);
 
-        do {
-            System.out.println("Bem-vindo ao Menu br.com.biblioteca.controller.Biblioteca!!!");
-            System.out.println("Digite a opção desejada: ");
-            System.out.println("[1] - Usuário");
-            System.out.println("[2] - Livros");
-            System.out.println("[3] - Pagamentos e saldos");
-            System.out.println("[4] - Sair");
+        PagamentoService pagamentoService = new PagamentoService();
+        ValidadorEmprestimo validadorEmprestimo = new ValidadorEmprestimo();
+        CalculadoraMulta calculadoraMulta = new CalculadoraMulta();
+        EmprestimoService emprestimoService = new EmprestimoService(validadorEmprestimo, calculadoraMulta, pagamentoService);
 
-            int opcaoUsuario = sc.nextInt();
+        Biblioteca biblioteca = new Biblioteca(pagamentoService, emprestimoService);
 
-            switch (opcaoUsuario) {
-                case 1: sc.nextLine();
-                    menu.menuUsuario();
-                    break;
-                case 2: sc.nextLine();
-                    menu.menuLivro();
-                    break;
-                case 3:
-                    menu.menuPagamento();
-                    break;
-                case 4:
-                    continuarRodar = false;
-                    break;
-            }
-        } while (continuarRodar);
+        MenuUsuario menuUsuario = new MenuUsuario(biblioteca, sc);
+        MenuLivro menuLivro = new MenuLivro(biblioteca, sc);
+        MenuFinanceiro menuFinanceiro = new MenuFinanceiro(biblioteca, sc);
+        MenuPrincipal menuPrincipal = new MenuPrincipal(biblioteca,sc,menuUsuario,menuLivro,menuFinanceiro);
+
+        menuPrincipal.iniciar();
     }
 }
-
-
-
-
-
-
-
-
-
