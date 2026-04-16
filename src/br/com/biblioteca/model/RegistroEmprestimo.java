@@ -3,6 +3,7 @@ package br.com.biblioteca.model;
 import java.time.LocalDate;
 
 public class RegistroEmprestimo {
+    private static int contarId = 1;
     private int idTransacao;
     private int idUsuario;
     private int idLivro;
@@ -15,6 +16,7 @@ public class RegistroEmprestimo {
         this.idLivro = idLivro;
         this.dataEmprestimo = LocalDate.now();
         this.finalizado = false;
+        this.idTransacao = contarId++;
     }
 
     public int getIdTransacao() {

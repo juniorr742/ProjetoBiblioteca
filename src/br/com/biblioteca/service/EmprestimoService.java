@@ -24,7 +24,7 @@ public class EmprestimoService {
             pagamento.aplicarTaxaEmprestimo(usuario);
             usuario.adicionarLivro(livro);
             livro.setDisponivel(false);
-            System.out.println("Livro" + livro.getTitulo() + "emprestado com sucesso!");
+            System.out.println("Livro" + livro.getTitulo() + " emprestado com sucesso!");
         }
     }
 
@@ -39,7 +39,6 @@ public class EmprestimoService {
 
         double valorMulta = calculadora.valorCalculado(diasCorridos);
         if (valorMulta > 0){
-            System.out.println("Multa de R$:"+valorMulta + " registrada.");
             pagamento.aplicarMultaAtraso(usuario, valorMulta);
             System.out.println("Livro devolvido com sucesso!");
         }else {

@@ -35,7 +35,7 @@ public class MenuFinanceiro extends MenuBase{
                     double valorEmprestimo = BibliotecaConfig.CUSTO_FIXO_EMPRESTIMO;
                     double valorMulta = BibliotecaConfig.VALOR_MULTA_DIARIA;
                     int prazo = BibliotecaConfig.PRAZO_DEVOLUCO_PADRAO_DIAS;
-                    System.out.printf("Valor do Empréstimo = %.2f | Valor da multa = %.2f/dia | Prazo de devolução: %d",valorEmprestimo,valorMulta,prazo);
+                    System.out.printf("Valor do Empréstimo = %.2f | Valor da multa = %.2f/dia | Prazo de devolução: %d dias\n",valorEmprestimo,valorMulta,prazo);
                     break;
                 case 0 :
                     System.out.println("Voltando...");

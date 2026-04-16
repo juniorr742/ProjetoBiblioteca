@@ -23,11 +23,15 @@ public class MenuPrincipal extends MenuBase{
             System.out.println("[1] - Usuários | [2] - Livros | [3] - Financeiro | [0] - Sair");
             switch (lerInteiro()){
                 case 1: mu.exibir();
+                        break;
                 case 2: ml.exibir();
+                        break;
                 case 3: mf.exibir();
+                        break;
                 case 4:
                     System.out.println("Encerrando sistema, até logo!");
                     rodar = false;
+                    break;
             }
         }while (rodar);
     }

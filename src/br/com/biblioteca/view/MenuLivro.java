@@ -57,7 +57,7 @@ public class MenuLivro extends MenuBase{
                     for (Livro L : U.getlivroEmprestado()){
                         System.out.printf("[%d] - %s", L.getId(), L.getTitulo());
                     }
-                    System.out.println("Digite o id do livro que quer devolver: ");
+                    System.out.println(", Digite o id do livro que quer devolver: ");
                     int idLivro = lerInteiro();
                     Livro livroParaDevolver = U.getlivroEmprestado().stream().filter(leitura -> leitura.getId() == idLivro).findFirst().orElse(null);
 

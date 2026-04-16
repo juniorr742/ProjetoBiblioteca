@@ -36,6 +36,7 @@ public class MenuBase {
         for (Usuario u: lista){
             System.out.printf("[%d] - %s\n", u.getId(), u.getNome());
         }
+        System.out.println("Digite o id desejado: ");
         return biblioteca.buscarUsuariosPorId(lerInteiro());
     }
 

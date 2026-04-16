@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public abstract class Usuario {
+    private static int contarId = 1;
     private Integer id;
     private String nome;
     private List<Livro> livroEmprestado;
@@ -18,6 +19,7 @@ public abstract class Usuario {
         this.nome = nome;
         this.livroEmprestado = new ArrayList<>();
         this.saldo = new Pagamento();
+        this.id = contarId++;
     }
 
     public void adicionarLivro(Livro livro){

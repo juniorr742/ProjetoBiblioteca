@@ -39,10 +39,10 @@ public class MenuUsuario extends MenuBase{
                     System.out.println("Digite seu nome para a busca: ");
                     Usuario u = selecionarUsuario(sc.nextLine());
                     System.out.println("Verificando dados de: " + u.getNome());
-                    System.out.printf("ID: %d | Nome: %s | Limite de livros: %d", u.getId(), u.getNome(), u.getLimiteLivros());
+                    System.out.printf("ID: %d | Nome: %s | Limite de livros: %d |", u.getId(), u.getNome(), u.getLimiteLivros());
                     biblioteca.verificarSaldo(u.getId());
                     break;
-                case 3:
+                case 0:
                     System.out.println("Voltando...");
                     continuarUsuario = false;
                     break;
