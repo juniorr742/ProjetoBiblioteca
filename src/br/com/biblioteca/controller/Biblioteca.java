@@ -108,7 +108,7 @@ public class Biblioteca {
 
     }
 
-    public void verificarSaldo(long idPagamento){
+    public void verificarSaldo(int idPagamento){
         Usuario usuarioEcontrado = buscarUsuariosPorId(idPagamento);
 
             if (usuarioEcontrado != null){
