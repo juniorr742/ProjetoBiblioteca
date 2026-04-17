@@ -3,7 +3,6 @@ package br.com.biblioteca.model;
 import java.util.Objects;
 
 public class Livro {
-    private static int contarId = 1;
     private String titulo;
     private String autor;
     private boolean disponivel;
@@ -18,7 +17,6 @@ public class Livro {
             }
             this.autor = autor;
             this.disponivel = true;
-            this.id = contarId++;
          }
 
     public String getTitulo() {
