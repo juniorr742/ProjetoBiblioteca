@@ -7,8 +7,8 @@ import java.util.List;
 
 
 public abstract class Usuario {
-    private static long ContadorId = 1;
-    private Long id;
+    private static int ContadorId = 1;
+    private int id;
     private String nome;
     private List<Livro> livroEmprestado;
     private Pagamento saldo;
@@ -31,7 +31,7 @@ public abstract class Usuario {
     }
 
     public String getNome(){return nome;}
-    public Long getId(){return id;}
+    public int getId(){return id;}
     public  List<Livro> getlivroEmprestado(){return Collections.unmodifiableList(livroEmprestado);}
     public Pagamento getSaldo() {
         return saldo;
