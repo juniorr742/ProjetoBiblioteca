@@ -94,8 +94,9 @@ public class Biblioteca {
     public void emprestarLivro(int idLivro, int idUsuario) {
         Livro livroEncontrado = buscarLivroPorId(idLivro);
         Usuario usuarioEncontrado = buscarUsuariosPorId(idUsuario);
-        if (livroEncontrado == null && usuarioEncontrado == null) {
+        if (livroEncontrado == null || usuarioEncontrado == null) {
             System.out.println("ERRO: livro ou usuário não encontrado");
+            return;
         }
         emprestimoService.emprestarLivro(usuarioEncontrado, livroEncontrado);
             if (!livroEncontrado.isDisponivel()){

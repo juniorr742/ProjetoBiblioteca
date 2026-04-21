@@ -28,7 +28,7 @@ public class MenuPrincipal extends MenuBase{
                         break;
                 case 3: mf.exibir();
                         break;
-                case 4:
+                case 0:
                     System.out.println("Encerrando sistema, até logo!");
                     rodar = false;
                     break;
