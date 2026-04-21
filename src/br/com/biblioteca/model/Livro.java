@@ -3,10 +3,10 @@ package br.com.biblioteca.model;
 import java.util.Objects;
 
 public class Livro {
+    private static int ContadorId = 1;
     private String titulo;
     private String autor;
     private boolean disponivel;
-    private int prazo = 7;
     int id;
 
         public Livro(String titulo, String autor) {
@@ -17,6 +17,7 @@ public class Livro {
             }
             this.autor = autor;
             this.disponivel = true;
+            this.id = ContadorId++;
          }
 
     public String getTitulo() {
