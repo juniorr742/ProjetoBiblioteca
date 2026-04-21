@@ -79,5 +79,5 @@ git clone https://github.com/juniorr742/ProjetoBiblioteca.git
 **Francisco Junior**  
 Focado em aprender as melhores práticas de engenharia de software.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Francisco_Junior-blue?style=flat&logo=linkedin)](https://linkedin.com/in/seu-perfil)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Francisco_Junior-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/francisco-magalh%C3%A3es-481a20245/)
 [![GitHub](https://img.shields.io/badge/GitHub-juniorr742-black?style=flat&logo=github)](https://github.com/juniorr742)
