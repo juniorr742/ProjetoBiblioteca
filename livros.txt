@@ -1,2 +1,0 @@
-1;harry;true
-2;boruto;true
