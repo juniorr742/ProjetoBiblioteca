@@ -13,6 +13,11 @@ public class ValidadorEmprestimo {
             return false;
         }
 
+        if (!livro.isDisponivel()){
+            System.err.println("ERRO: O Livro não está disponivel.");
+            return false;
+        }
+
         if (usuario.getSaldo().getSaldoDevedor() >= usuario.getLimiteSaldo()) {
             System.out.println("ERRO: Limite de saldo atingido, por favor realize o pagamento.");
             return false;
