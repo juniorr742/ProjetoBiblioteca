@@ -1,55 +1,83 @@
-- Sistema de Gerenciamento de Biblioteca (Java OOP)
-Este projeto é um sistema de gestão de biblioteca desenvolvido em Java, focado na aplicação prática de Princípios de Orientação a Objetos e Clean Code. O objetivo principal é gerenciar o fluxo de empréstimos e devoluções de livros, garantindo que as regras de negócio sejam respeitadas através de uma arquitetura limpa e bem definida.
+# 📚 Sistema de Gerenciamento de Biblioteca — Java OOP
 
-- O que o projeto faz?
-Atualmente, o sistema conta com as seguintes funcionalidades principais:
+> Projeto desenvolvido em Java puro com foco na aplicação prática de **Orientação a Objetos** e **Clean Code**, sem frameworks externos.
 
-Gestão de Usuários e Livros: Cadastro e controle de diferentes tipos de usuários (Alunos e Professores) e exemplares de livros.
+---
 
-Sistema de Empréstimos Inteligente:
+## 💡 Sobre o projeto
 
-Validação de limites (quantidade de livros e saldo devedor).
+Sistema de gestão de biblioteca que gerencia o fluxo completo de empréstimos e devoluções de livros, garantindo que as regras de negócio sejam respeitadas através de uma arquitetura limpa e bem definida em camadas.
 
-Prevenção de empréstimos duplicados do mesmo exemplar para o mesmo usuário.
+---
 
-Cálculo Automático de Multas: Processamento de devoluções com cálculo de multa diária para atrasos fora do prazo padrão (7 dias).
+## ⚙️ Funcionalidades
 
-Separação de Responsabilidades: Utilização de serviços específicos para cada tarefa (EmprestimoService, CalculadoraMulta, ValidadorEmprestimo), garantindo que o código seja fácil de manter e testar.
+- **Gestão de Usuários e Livros** — Cadastro e controle de Alunos e Professores com perfis distintos
+- **Sistema de Empréstimos Inteligente** — Validação de limites de livros, saldo devedor e prevenção de empréstimos duplicados
+- **Cálculo Automático de Multas** — Processamento de devoluções com multa diária para atrasos além do prazo padrão de 7 dias
+- **Separação de Responsabilidades** — Serviços independentes para cada responsabilidade (`EmprestimoService`, `CalculadoraMulta`, `ValidadorEmprestimo`)
 
-- Arquitetura e Princípios Aplicados
-Durante o desenvolvimento, foquei em sair de um código procedural para um design orientado a objetos robusto:
+---
 
-SRP (Single Responsibility Principle): Extraí as lógicas de validação e cálculo de multa para classes independentes.
+## 🏗️ Arquitetura
 
-Encapsulamento: Melhorei a forma como os dados são acessados, garantindo que as classes de modelo (como Usuario) controlem seu próprio estado.
+```
+src/
+└── br.com.biblioteca/
+    ├── config/       → Constantes e configurações do sistema
+    ├── controller/   → Coordenação entre camadas
+    ├── dao/          → Acesso a dados (em implementação)
+    ├── factory/      → Criação de objetos (Factory Pattern)
+    ├── model/        → Entidades do domínio
+    ├── service/      → Regras de negócio
+    └── view/         → Menus e interação com o usuário
+```
 
-Herança e Polimorfismo: Implementação de diferentes perfis de usuário com limites de crédito e livros distintos.
+---
 
-- Evolução do Projeto
-O projeto está em constante evolução. Atualmente, os próximos passos são:
+## 📐 Princípios aplicados
 
-Integração com Banco de Dados (JDBC): Estamos na fase de substituir o armazenamento em memória por um banco de dados relacional para persistência real dos dados.
+| Princípio | Aplicação |
+|---|---|
+| **SRP** | Validação e cálculo de multa extraídos para classes independentes |
+| **Encapsulamento** | Classes de modelo controlam seu próprio estado; listas expostas como `unmodifiableList` |
+| **Herança e Polimorfismo** | `Aluno` e `Professor` estendem `Usuario` com limites distintos de livros e crédito |
+| **Factory Pattern** | `UsuarioFactory` centraliza a criação de usuários |
+| **Constantes centralizadas** | `BibliotecaConfig` como única fonte de verdade para valores do negócio |
 
-Injeção de Dependência: Refatorar os serviços para remover o acoplamento forte (uso do new dentro dos construtores).
+---
 
-Tratamento de Exceções: Implementar exceções customizadas para substituir mensagens de console por um fluxo de erro mais profissional.
+## 🗺️ Roadmap
 
-- Futuro: Spring Boot API
-O roadmap deste projeto prevê a transformação desta lógica de negócio em uma API RESTful utilizando Spring Boot.
+- [x] Lógica de negócio em Java puro
+- [x] Arquitetura em camadas (MVC parcial)
+- [ ] **Integração com banco de dados via JDBC** ← em andamento
+- [ ] Credenciais externalizadas em `db.properties`
+- [ ] Exceções customizadas no lugar de mensagens de console
+- [ ] Injeção de dependência sem acoplamento forte
+- [ ] Migração para Spring Boot com API RESTful
+- [ ] Spring Data JPA para acesso aos dados
+- [ ] Autenticação e segurança de usuários
 
-Exposição de endpoints para frontend/mobile.
+---
 
-Uso de Spring Data JPA para facilitar o acesso aos dados.
+## ▶️ Como rodar
 
-Segurança e autenticação de usuários.
+```bash
+# Clone o repositório
+git clone https://github.com/juniorr742/ProjetoBiblioteca.git
+```
 
-Como rodar o projeto
-Clone o repositório:
+1. Importe o projeto na sua IDE (IntelliJ, Eclipse ou VS Code)
+2. Execute a classe `Main` localizada em `br.com.biblioteca.view`
+3. Interaja com o sistema pelo console
 
-Bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-Importe o projeto na sua IDE favorita (IntelliJ, Eclipse ou VS Code).
+---
 
-Execute a classe principal (Main) para testar as funcionalidades de empréstimo e devolução no console.
+## 👨‍💻 Autor
 
-Desenvolvido por Francisco Junior - Focado em aprender as melhores práticas de engenharia de software.
+**Francisco Junior**  
+Focado em aprender as melhores práticas de engenharia de software.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Francisco_Junior-blue?style=flat&logo=linkedin)](https://linkedin.com/in/seu-perfil)
+[![GitHub](https://img.shields.io/badge/GitHub-juniorr742-black?style=flat&logo=github)](https://github.com/juniorr742)
