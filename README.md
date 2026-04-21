@@ -54,7 +54,7 @@ src/
 - [ ] **Integração com banco de dados via JDBC** ← em andamento
 - [ ] Credenciais externalizadas em `db.properties`
 - [ ] Exceções customizadas no lugar de mensagens de console
-- [ ] Injeção de dependência sem acoplamento forte
+- [ x] Injeção de dependência sem acoplamento forte
 - [ ] Migração para Spring Boot com API RESTful
 - [ ] Spring Data JPA para acesso aos dados
 - [ ] Autenticação e segurança de usuários
